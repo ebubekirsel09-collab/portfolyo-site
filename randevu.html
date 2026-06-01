@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.10), transparent 22%),
+        #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .topbar-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: #cbd5e1;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .menu a:hover {
+      color: #60a5fa;
+    }
+
+    .appointment-page {
+      padding: 70px 0 90px;
+      min-height: calc(100vh - 78px);
+    }
+
+    .appointment-shell {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .appointment-left {
+      background: linear-gradient(145deg, #111827 0%, #172554 100%);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 30px;
+      padding: 42px 36px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .appointment-left::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+      pointer-events: none;
+    }
+
+    .appointment-kicker {
+      display: inline-block;
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #bfdbfe;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      margin-bottom: 18px;
+    }
+
+    .appointment-left h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .appointment-lead {
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.84);
+      margin-bottom: 28px;
+    }
+
+    .appointment-points {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .appointment-point {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .point-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(96, 165, 250, 0.18);
+      color: #dbeafe;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .appointment-point h3 {
+      font-size: 17px;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .appointment-point p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.76);
+      line-height: 1.6;
+    }
+
+    .appointment-mini-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 18px 16px;
+    }
+
+    .mini-card span {
+      display: block;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.68);
+      margin-bottom: 6px;
+    }
+
+    .mini-card strong {
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    .appointment-right {
+      display: flex;
+    }
+
+    .appointment-form-card {
+      width: 100%;
+      background: rgba(30, 41, 59, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-head {
+      margin-bottom: 24px;
+    }
+
+    .form-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.16);
+      color: #93c5fd;
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+
+    .form-head h2 {
+      font-size: 32px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .form-head p {
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    .appointment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 15px 16px;
+      color: #ffffff;
+      font-size: 15px;
+      outline: none;
+      transition: 0.25s ease;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    .form-group select {
+      color: #cbd5e1;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .form-note {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #94a3b8;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .submit-btn,
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+      text-decoration: none;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.34);
+    }
+
+    .back-btn {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    .back-btn:hover {
+      background: #475569;
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      background: #020617;
+      color: rgba(255, 255, 255, 0.8);
+      padding: 22px 0;
+      text-align: center;
+      font-size: 14px;
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+      margin-top: 20px;
+    }
+
+    @media (max-width: 1100px) {
+      .appointment-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .topbar-inner {
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+      }
+
+      .menu {
+        justify-content: center;
+        gap: 12px 16px;
+      }
+
+      .appointment-page {
+        padding: 45px 0 70px;
+      }
+
+      .appointment-left,
+      .appointment-form-card {
+        padding: 26px 20px;
+      }
+
+      .appointment-left h1 {
+        font-size: 32px;
+      }
+
+      .form-head h2 {
+        font-size: 26px;
+      }
+
+      .form-row,
+      .appointment-mini-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .submit-btn,
+      .back-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <nav class="menu">
+        <a href="index.html#anasayfa">Ana Sayfa</a>
+        <a href="index.html#hizmetlerimiz">Hesaplamalar</a>
+        <a href="index.html#kesfet">Besin Rehberi</a>
+        <a href="index.html#eczane">Nöbetçi Eczane</a>
+        <a href="index.html#uzmanimiz">Uzmanımız</a>
+        <a href="randevu.html">Randevu</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="appointment-page">
+    <div class="container">
+      <div class="appointment-shell">
+
+        <div class="appointment-left">
+          <span class="appointment-kicker">PROFESYONEL DANIŞMANLIK</span>
+          <h1>Sağlığınız için doğru planı birlikte oluşturalım.</h1>
+          <p class="appointment-lead">
+            Beslenme, kilo yönetimi ve yaşam tarzı düzenlemeleri için size özel
+            değerlendirme süreci başlatın. Randevu talebinizi bırakın, sizinle iletişime geçelim.
+          </p>
+
+          <div class="appointment-points">
+            <div class="appointment-point">
+              <div class="point-icon">✓</div>
+              <div>
+                <h3>Kişiye Özel Yaklaşım</h3>
+                <p>İhtiyacınıza uygun planlama ve profesyonel değerlendirme süreci.</p>
+              </div>
+            </div>
+
+            <div class="appointment-point">
+              <div class="point-icon">✓</div>
+              <div>
+                <h3>Düzenli Danışmanlık Akışı</h3>
+                <p>İlk görüşmeden itibaren planlı, anlaşılır ve güven veren süreç.</p>
+              </div>
+            </div>
+
+            <div class="appointment-point">
+              <div class="point-icon">✓</div>
+              <div>
+                <h3>Hızlı Geri Dönüş</h3>
+                <p>Talebiniz sonrası uygun zaman planlaması için sizinle iletişime geçilir.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="appointment-mini-cards">
+            <div class="mini-card">
+              <span>Danışmanlık Türü</span>
+              <strong>Online / Yüz Yüze</strong>
+            </div>
+            <div class="mini-card">
+              <span>Görüşme Süreci</span>
+              <strong>Planlı ve Düzenli</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="appointment-right">
+          <div class="appointment-form-card">
+            <div class="form-head">
+              <span class="form-badge">RANDEVU TALEP FORMU</span>
+              <h2>Bilgilerinizi Doldurun</h2>
+              <p>Sizin için en uygun görüşme planını oluşturalım.</p>
+            </div>
+
+            <form class="appointment-form" action="https://formsubmit.co/info@bksstudio.info.tr" method="POST">
+              <input type="hidden" name="_subject" value="Yeni Randevu Talebi">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="adsoyad">Ad Soyad</label>
+                  <input type="text" id="adsoyad" name="adsoyad" placeholder="Ad soyad giriniz" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="telefon">Telefon</label>
+                  <input type="tel" id="telefon" name="telefon" placeholder="05xx xxx xx xx" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">E-posta</label>
+                  <input type="email" id="email" name="email" placeholder="ornek@mail.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="hizmet">Danışmanlık Türü</label>
+                  <select id="hizmet" name="hizmet" required>
+                    <option selected disabled value="">Seçiniz</option>
+                    <option>Online Danışmanlık</option>
+                    <option>Genel Bilgi Alma</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tarih">Tercih Edilen Tarih</label>
+                  <input type="date" id="tarih" name="tarih" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="saat">Tercih Edilen Saat</label>
+                  <input type="time" id="saat" name="saat" required />
+                </div>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="konu">Konu</label>
+                <input type="text" id="konu" name="konu" placeholder="Kilo verme, sağlıklı beslenme, yaşam tarzı düzeni..." />
+              </div>
+
+              <div class="form-group full-width">
+                <label for="mesaj">Mesajınız</label>
+                <textarea id="mesaj" name="mesaj" placeholder="Kısaca talebinizi ve beklentinizi yazınız"></textarea>
+              </div>
+
+              <div class="form-note">
+                Form gönderimi sonrasında uygunluk durumuna göre sizinle iletişime geçilecektir.
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="submit-btn">Randevu Talebi Oluştur</button>
+                <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 | Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

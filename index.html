@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profesyonel Diyetisyen Sitesi</title>
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#anasayfa" class="logo" onclick="closeMenu()">
+        <img src="imageslogo.png" alt="Sağlık Merkezi Logo">
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menüyü aç/kapat">
+        ☰
+      </button>
+    </div>
+
+    <nav class="dropdown-menu" id="dropdownMenu">
+      <div class="container dropdown-menu-inner">
+        <a href="#anasayfa" onclick="closeMenu()">Ana Sayfa</a>
+        <a href="#hizmetlerimiz" onclick="closeMenu()">Hesaplamalar</a>
+        <a href="#kesfet" onclick="closeMenu()">Besin Rehberi</a>
+        <a href="#eczane" onclick="closeMenu()">Nöbetçi Eczane</a>
+        <a href="#uzmanimiz" onclick="closeMenu()">Uzmanımız</a>
+        <a href="#randevu" onclick="closeMenu()">Randevu</a>
+        <a href="randevu.html" class="cta-btn" onclick="closeMenu()">Randevu Oluştur</a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="anasayfa" class="hero">
+    <div class="container hero-content">
+      <span class="hero-badge">Profesyonel Beslenme ve Sağlık Danışmanlığı</span>
+      <h1>Kilo yönetimi konusunda uzman desteği alın, sağlığınıza güvenle kavuşun.</h1>
+      <p>
+        Kişiye özel beslenme planları, gelişmiş sağlık hesaplamaları ve profesyonel danışmanlık
+        yaklaşımıyla yaşam kalitenizi yükseltin.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#hizmetlerimiz" class="hero-btn primary">Hemen Başla</a>
+        <a href="#kesfet" class="hero-btn secondary">Besin Rehberini İncele</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="hizmetlerimiz" class="services">
+    <div class="container">
+      <div class="section-title">
+        <span>HESAPLAMALAR</span>
+        <h2>Neler Sunuyoruz?</h2>
+        <p>Bilimsel temelli araçlarımızla sağlığınızı kontrol altına alın.</p>
+      </div>
+
+      <div class="service-grid">
+        <a href="vki.html" class="service-card">
+          <div class="icon">⚖️</div>
+          <h3>VKİ Hesaplama</h3>
+          <p>Boy ve kilonuza göre genel kilo aralığınızı değerlendirir.</p>
+        </a>
+
+        <a href="kalori.html" class="service-card">
+          <div class="icon">🔥</div>
+          <h3>Kalori İhtiyacı</h3>
+          <p>Yaş, boy ve kilo verisine göre günlük enerji ihtiyacınızı hesaplar.</p>
+        </a>
+
+        <a href="su.html" class="service-card">
+          <div class="icon">💧</div>
+          <h3>Su İhtiyacı</h3>
+          <p>Kilonuza göre günlük ideal su tüketimini hesaplar.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="kesfet" class="explore-section">
+    <div class="container explore-wrapper">
+      <div class="explore-left">
+        <span class="explore-tag">KEŞFET</span>
+        <h2>Sağlıklı Yaşam Rehberi</h2>
+        <p>
+          Kilo yönetimi, obezite değerlendirmesi ve sağlıklı yaşam konusunda
+          en çok merak edilen soruların yanıtlarını keşfedin.
+        </p>
+
+        <div class="accordion">
+          <div class="accordion-item active">
+            <button class="accordion-header">
+              Bel çevresi nasıl ölçülür?
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Bel çevresi ölçümü, karın bölgesindeki yağlanmanın değerlendirilmesinde
+                önemli bir göstergedir. Ölçüm doğru noktadan ve uygun şekilde yapılmalıdır.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Obezite nedir?
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Obezite, vücutta sağlığı olumsuz etkileyebilecek düzeyde aşırı yağ birikmesi
+                durumudur. Düzenli değerlendirme ve doğru beslenme planı önem taşır.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Bireysel çaba ve diyetle kilo vermek mümkün mü?
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Evet, kişiye uygun beslenme düzeni ve sürdürülebilir yaşam alışkanlıklarıyla
+                kilo vermek mümkündür. Sürecin doğru yönetilmesi kalıcılık açısından önemlidir.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Verilen kiloyu korumak mümkün mü?
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Kalıcı sonuçlar için yalnızca kilo vermek değil, yeni yaşam düzenini korumak da gerekir.
+                Dengeli beslenme ve takip süreci bu noktada belirleyici olur.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Fazla kilo ve obezite değerlendirmesi nasıl yapılıyor?
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Değerlendirme; boy, kilo, bel çevresi, vücut kitle indeksi ve bazı ek ölçümlerle birlikte
+                kişinin genel sağlık durumuna göre yapılır.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Ölçüm yöntemleri neler?
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                VKİ, bel çevresi ölçümü, yağ oranı değerlendirmesi ve diğer antropometrik ölçümler,
+                kilo yönetimi sürecinde sık kullanılan yöntemler arasındadır.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-right">
+        <img src="kesfet.webp" alt="Sağlıklı yaşam ve kilo yönetimi" />
+      </div>
+    </div>
+  </section>
+
+  <section id="eczane" class="pharmacy-section">
+    <div class="container pharmacy-wrapper">
+      <div class="pharmacy-left">
+        <span class="pharmacy-tag">NÖBETÇİ ECZANE</span>
+        <h2>Türkiye Geneli Resmi Nöbetçi Eczane Sorgusu</h2>
+        <p>
+          Bulunduğunuz il ve ilçeye göre nöbetçi eczanelere hızlıca ulaşın.
+          Güncel bilgileri resmi sorgu ekranı üzerinden görüntüleyebilirsiniz.
+        </p>
+
+        <div class="pharmacy-badges">
+          <span>Türkiye Geneli</span>
+          <span>Resmi Sorgu</span>
+          <span>Hızlı Erişim</span>
+        </div>
+
+        <div class="pharmacy-actions">
+          <a
+            href="https://www.turkiye.gov.tr/saglik-titck-nobetci-eczane-sorgulama"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="pharmacy-btn"
+          >
+            Resmi Sorguya Git
+          </a>
+        </div>
+
+        <p class="pharmacy-note">
+          Not: İl, ilçe ve tarih seçimini resmi ekran üzerinden tamamlayabilirsiniz.
+        </p>
+      </div>
+
+      <div class="pharmacy-right">
+        <div class="pharmacy-icon-card">
+          <div class="pharmacy-icon">
+            <img src="eczane-logo.png" alt="Eczane logosu" />
+          </div>
+          <h3>Nöbetçi Eczane</h3>
+          <p>
+            En güncel nöbetçi eczane bilgilerine güvenli ve resmi kaynaktan ulaşın.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="uzmanimiz" class="info-section">
+    <div class="container info-box">
+      <span class="info-tag">UZMANIMIZ</span>
+      <h2></h2>
+      <p>
+      “Sağlıklı yaşamı birlikte sürdürülebilir hale getirelim.
+Kendini iyi hissettiğin bir beden için doğru adımı bugün at.” ✨
+      </p>
+    </div>
+  </section>
+
+  <section id="randevu" class="cta-section">
+    <div class="container cta-box">
+      <h2>Sağlığınız için ilk adımı bugün atın.</h2>
+      <p>Online danışmanlık, yüz yüze görüşme ve detaylı değerlendirme için bizimle iletişime geçin.</p>
+      <a href="randevu.html" class="cta-btn">Randevu Oluştur</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+  <script>
+    const accordionItems = document.querySelectorAll(".accordion-item");
+
+    accordionItems.forEach((item) => {
+      const header = item.querySelector(".accordion-header");
+
+      header.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+        accordionItems.forEach((i) => i.classList.remove("active"));
+        if (!isActive) {
+          item.classList.add("active");
+        }
+      });
+    });
+
+    const menuToggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("dropdownMenu");
+
+    function toggleMenu() {
+      menu.classList.toggle("active");
+      menuToggle.classList.toggle("active");
+    }
+
+    function closeMenu() {
+      menu.classList.remove("active");
+      menuToggle.classList.remove("active");
+    }
+
+    menuToggle.addEventListener("click", toggleMenu);
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 991) {
+        closeMenu();
+      }
+    });
+  </script>
+
+</body>
+</html>
